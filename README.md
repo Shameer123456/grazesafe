@@ -1,55 +1,64 @@
-# GrazeSafe  
-### Pasture & Parasite Risk Mapping Prototype
+# GrazeSafe — Pasture & Parasite Risk Mapping Prototype
 
-GrazeSafe is a client-driven, web-based proof-of-technology developed as part of the  
-**Professional Software Projects** module at Sheffield Hallam University.
+A web-based mapping tool that shows livestock parasite risk levels across UK farms, combining real weather data with a transparent rule-based risk model. Built for Elanco Animal Health as part of the Professional Software Projects module at Sheffield Hallam University.
 
-The project explores how simple geospatial visualisation and public environmental data
-can be combined to highlight **potential parasite risk indicators** for grazing livestock
-across the UK.
+## What it does
 
-> ⚠️ This is a prototype designed to support discussion and understanding.  
-> It does **not** provide clinical diagnosis or predictive modelling.
+- **Interactive UK map** (Leaflet.js + OpenStreetMap) with farm markers colour-coded by risk level
+- **Live weather integration** — pulls temperature and rainfall from the Open-Meteo API for each farm location
+- **Rule-based risk scoring** — LOW / MEDIUM / HIGH based on environmental conditions, fully explainable
+- **Four parasite types** — Gastrointestinal Roundworms, Lungworms, Liver Flukes, Coccidia — each with its own risk logic
+- **Side panel** — click any farm to see risk level, weather conditions, why the risk is what it is, and mitigation advice
+- **AI chatbot** — Claude-powered assistant (via Ollama backend) that answers farmer questions in plain English, never diagnoses, never prescribes
+- **Import / Export** — add custom farms via CSV, download your farm data
+- **Mobile responsive**
 
----
+## Tech Stack
 
-## Project Goals
+- **Frontend:** HTML, CSS (custom), JavaScript (ES modules), Leaflet.js, Bootstrap
+- **Backend:** Node.js + Express (serves frontend, handles chatbot proxy)
+- **APIs:** Open-Meteo (weather), Ollama (local LLM for chatbot)
+- **Maps:** Leaflet.js, OpenStreetMap tiles
 
-- Visualise pasture or farm locations on an interactive UK map
-- Integrate simple external environmental data (e.g. weather)
-- Apply a transparent, rule-based parasite risk indicator
-- Present results clearly to **non-technical users**
-- Support discussion rather than automated decision-making
+## Project Structure
 
----
+```
+/
+├── index.html              # Main map view
+├── parasites.html          # Parasite information pages
+├── import-export.html      # Farm data import/export
+├── backend/
+│   └── server.js           # Express server with chatbot endpoint
+├── scripts/
+│   ├── app.js              # Main app logic, farm rendering, panel updates
+│   ├── map.js              # Leaflet map init, custom controls
+│   ├── api.js              # Open-Meteo weather API calls
+│   ├── data.js             # Mock farm dataset (UK locations)
+│   ├── utils.js            # Risk scoring logic
+│   ├── weather.js          # Weather data processing
+│   ├── chatbot.js          # Chatbot UI
+│   └── import-export.js    # CSV import/export
+├── styles/
+│   └── main.css
+└── tests/
+    └── ui.test.js
+```
 
-## Target Users
+## Setup
 
-- Farmers  
-- Veterinarians  
-- Agricultural advisors  
-- Internal Elanco teams (engineering, data, product)
+```bash
+# Install backend dependencies
+cd backend && npm install
 
-Users are assumed to be non-technical and value clarity and explainability.
+# Start the server
+node server.js
 
----
+# Open in browser
+# → http://localhost:3000
+```
 
-## Technology Stack
+For the AI chatbot to work, you'll need [Ollama](https://ollama.com) running locally with a model pulled (e.g. `ollama pull llama3`).
 
-### Frontend
-- HTML, CSS, JavaScript
-- Leaflet.js (interactive mapping)*
-- OpenStreetMap tiles*
-- GeoJSON for pasture/farm data*
+## Context
 
-### Backend / Data
-- Lightweight Node.js or serverless functions
-- Public weather API (e.g. rainfall and temperature)
-- Simple rule-based risk logic (Low / Medium / High)
-
-### Tooling & Deployment
-- GitHub (version control)
-- Netlify / GitHub Pages (deployment)*
-
-
-
+Group project built for Elanco Animal Health (a real client) as part of Sheffield Hallam University's Professional Software Projects module. The brief was to prototype a digital tool to help farmers make decisions about parasite management. The app is a prototype — it does not provide medical or veterinary advice.
