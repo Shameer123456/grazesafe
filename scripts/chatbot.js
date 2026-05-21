@@ -21,7 +21,7 @@ export function initChatbot({ onAction, getContext }) {
     toggle.textContent = collapsed ? "+" : "–";
   });
 
-  addMsg("Hi! Type 'help' or try: 'reset view', 'zoom to leeds'.", "bot");
+  addMsg("Hi! Ask me about parasite risk, or try: 'zoom to Leeds', 'reset view', 'help'.", "bot");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ export function initChatbot({ onAction, getContext }) {
     addMsg(message, "user");
 
     try {
-      const res = await fetch("http://localhost:3000/api/chat", {
+      const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -49,7 +49,7 @@ export function initChatbot({ onAction, getContext }) {
         onAction?.(data.action);
       }
     } catch (err) {
-      addMsg("Server not responding. Is backend running?", "bot");
+      addMsg("Could not reach the assistant. Please try again.", "bot");
     }
   });
 }
