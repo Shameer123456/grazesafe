@@ -1,5 +1,7 @@
 # GrazeSafe — Pasture & Parasite Risk Mapping Prototype
 
+**Live demo:** https://grazesafe.vercel.app
+
 A web-based mapping tool that shows livestock parasite risk levels across UK farms, combining real weather data with a transparent rule-based risk model. Built for Elanco Animal Health as part of the Professional Software Projects module at Sheffield Hallam University.
 
 ## What it does
