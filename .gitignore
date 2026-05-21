@@ -151,3 +151,9 @@ Desktop.ini
 farms.csv
 *.local.csv
 !.env.example
+
+# Old server files — replaced by api/chat.js serverless function
+server.js
+backend/
+package-lock.json
+tests/
