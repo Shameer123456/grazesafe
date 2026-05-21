@@ -1,14 +1,5 @@
 {
   "name": "grazesafe",
   "version": "1.0.0",
-  "description": "UK livestock parasite risk mapping prototype — built for Elanco Animal Health",
-  "type": "module",
-  "scripts": {
-    "start": "node backend/server.js",
-    "dev": "node backend/server.js"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2"
-  }
+  "description": "UK livestock parasite risk mapping prototype"
 }
